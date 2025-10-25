@@ -1,55 +1,78 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+.formWrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-top: 20px;
+}
 
-
+/* DarkVeil stays behind */
+.formWrapper > *:not(.formContainer) {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
 
 .formContainer {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  padding: 40px 35px;
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  max-width: 400px;
+  padding: 50px 40px;
+  background: rgba(25, 0, 40, 0.55);
+  backdrop-filter: blur(20px);
   border-radius: 20px;
-  width: 380px;
+  box-shadow: 0 0 25px rgba(168, 112, 255, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
   text-align: center;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  margin-left: 35%;
-  
+  color: white;
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+.formContainer h1 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  background: linear-gradient(90deg, #a970ff, #8a3fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .formContainer input {
   width: 100%;
   margin: 10px 0;
   padding: 12px 15px;
+  border-radius: 10px;
   border: none;
   outline: none;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
-  font-size: 15px;
+  font-size: 1rem;
   transition: all 0.3s ease;
-  letter-spacing: 0.5px;
 }
 
 .formContainer input::placeholder {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .formContainer input:focus {
-  background: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  transform: scale(1.02);
+  border: 2px solid #a970ff;
+  box-shadow: 0 0 12px #a970ff;
+  background: rgba(255, 255, 255, 0.12);
+  animation: glow 1.5s infinite;
 }
-
 
 .formContainer button {
   width: 100%;
   margin-top: 20px;
   padding: 12px 0;
-  background: linear-gradient(90deg,#398ffd, #3975ff);
-  border: none;
   border-radius: 10px;
+  border: none;
+  background: linear-gradient(90deg, #a970ff, #8a3fff);
   color: #fff;
   font-weight: 600;
   letter-spacing: 1px;
@@ -59,11 +82,13 @@
 }
 
 .formContainer button:hover {
-  background: linear-gradient(90deg, #1041b5, #1041b5);
   transform: scale(1.05);
+  box-shadow: 0 0 15px #a970ff;
+  animation: glow 1.5s infinite;
 }
 
-.error, .success {
+.error,
+.success {
   margin-top: 15px;
   padding: 10px 15px;
   width: 100%;
@@ -79,31 +104,38 @@
 }
 
 .success {
-  background: rgba(0, 255, 150, 0.15);
-  color: #55efc4;
-  border: 1px solid rgba(0, 255, 150, 0.3);
+  background: rgba(168, 112, 255, 0.15);
+  color: #a970ff;
+  border: 1px solid rgba(168, 112, 255, 0.3);
 }
 
-
 @keyframes fadeInUp {
-  0% {
+  from {
     opacity: 0;
     transform: translateY(40px);
   }
-  100% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.formContainer {
-  animation: fadeInUp 0.8s ease-in-out;
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(168, 112, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(168, 112, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(168, 112, 255, 0.2);
+  }
 }
 
 @media (max-width: 480px) {
   .formContainer {
-    width: 85%;
-    padding: 30px 25px;
+    width: 90%;
+    padding: 40px 25px;
   }
   .formContainer input {
     font-size: 14px;

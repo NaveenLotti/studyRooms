@@ -1,94 +1,131 @@
-#footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.964);
-    backdrop-filter: blur(20px);
-    color: white;
-    padding: 15px 0;
-    z-index: 999;
-    width: 100%;
+.footer {
+  width: 100%;
+  background: #0a0a0a;
+  color: white;
+  padding: 60px 8% 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
 }
 
-.footer-content {
-    display: flex;
-    justify-content: space-around;
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1300px;
+  gap: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 30px;
+}
+
+/* Brand Section */
+.footer-logo {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-logo img {
+  width: 180px;
+  margin-bottom: 15px;
+}
+
+.footer-logo p {
+  color: #ccc;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Links Section */
+.footer-links {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-links h3 {
+  color: #a970ff;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.footer-links a {
+  display: block;
+  color: #ddd;
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #a970ff;
+}
+
+/* Social Section */
+.footer-social {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-social h3 {
+  color: #a970ff;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1.2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background: #a970ff;
+  transform: translateY(-3px);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  width: 100%;
+  text-align: center;
+  margin-top: 25px;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .footer-container {
+    flex-direction: column;
     align-items: center;
-    max-width: 1200px;
+    text-align: center;
+  }
+
+  .footer-logo img {
     margin: 0 auto;
-    padding: 0 20px;
-}
-#footer .footer-content .logo img {
-    height: 80px;
-    width: 80px;
-    object-fit: contain;
-}
+  }
 
-#footer .footer-content .links {
-    display: flex;
-    gap: 20px;
-}
+  .footer-links,
+  .footer-social {
+    margin-top: 20px;
+  }
 
-#footer .footer-content .links a {
-    font-size: 1.1rem;
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-#footer .footer-content .links a:hover {
-    color: #cf30aa;
-}
-
-.social-links {
-    width: 200px;
-    display: flex;
-    gap: 45px;
-}
-
-.social-links a {
-    color: white;
-    font-size: 30px;
-    transition: transform 0.3s, color 0.2s;
-}
-
-.social-links a:hover {
-    transform: scale(1.4);
-}
-
-.social-links .twitter:hover {
-    color: #1DA1F2;
-}
-
-.social-links .facebook:hover {
-    color: #1877F2;
-}
-
-.social-links .instagram:hover {
-    color: #dd062e;
-}
-
-.social-links .whatsapp:hover {
-    color: #0ce629;
-}
-
-.social-links .linkedin:hover {
-    color: #0077B5;
-}
-
-@media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    #footer .footer-content .links {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .social-links {
-        gap: 15px;
-    }
+  .social-icons {
+    justify-content: center;
+  }
 }

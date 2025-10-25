@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-import "./header.css";
+import "./headerAuth.css";
 
-function Header() {
+function HeaderAuth() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -18,13 +18,15 @@ function Header() {
         <NavLink to="/" end>Home</NavLink>
         <NavLink to="/createRoom">Create Room</NavLink>
         <NavLink to="/joinRoom">Join Room</NavLink>
+        {/* <NavLink to="/posts">Posts</NavLink> */}
         <NavLink to="/aboutUs">About Us</NavLink>
-        <NavLink to="/room">Demo Study Room</NavLink>
       </div>
 
       <div className="auth-buttons">
-        <Link to="/signup"><button className="btn-outline">Sign Up</button></Link>
-        <Link to="/login"><button className="btn-filled">Login</button></Link>
+        <div className="logo">
+        <img src="/default_profile.png" alt="profile" />
+        </div>
+        <p style={{marginTop: '10px'}}>User Name</p>
       </div>
 
       <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
@@ -34,4 +36,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default HeaderAuth;

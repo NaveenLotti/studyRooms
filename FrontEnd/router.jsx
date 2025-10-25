@@ -6,7 +6,8 @@ import Layout from './src/components/Layout.jsx';
 import AboutUs from './src/components/aboutUs.jsx';
 import CreateRoom from './src/Pages/createRoom.jsx';
 import JoinRoom from './src/Pages/joinRooms.jsx';
-import Posts from './src/components/posts.jsx';
+import StudyRoom from './src/Pages/StudyRoom.jsx';
+
 const AppRouter = () => {
     return (
         <Router>
@@ -18,7 +19,7 @@ const AppRouter = () => {
                     <Route path="/aboutUs" element={<AboutUs />} />
                     <Route path="/createRoom" element={<CreateRoom />} />
                     <Route path="/joinRoom" element={<JoinRoom />} />
-                    <Route path="/posts" element={<Posts />} />
+                    <Route path="/room" element={<StudyRoom />} />
                 </Route>
             </Routes>
         </Router>

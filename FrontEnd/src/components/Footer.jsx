@@ -1,27 +1,44 @@
-import "./Footer.css"
+import "./Footer.css";
 import { FaTwitter, FaFacebookF, FaInstagram, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
 const Footer = () => {
-    return (
-        <footer id="footer">
-            <div className="footer-content">
-                <div className="logo">
-                </div>
-                <div className="links">
-                    <a href="#">Home</a>
-                    <a href="#">AboutUs</a>
-                    <a href="#">ContactUs</a>
-                    <a href="#">Help</a>
-                </div>
-                <div className="social-links">
-                    <a href="#" className="twitter"><FaTwitter /></a>
-                    <a href="#" className="facebook"><FaFacebookF /></a>
-                    <a href="#" className="instagram"><FaInstagram /></a>
-                    <a href="#" className="linkedin"><FaLinkedinIn /></a>
-                    <a href="#" className="whatsapp"><FaWhatsapp /></a>
-                </div>
-            </div>
-        </footer>  
-    )
-}
+  return (
+    <footer className="footer">
+      <div className="footer-container">
+        {/* Brand Section */}
+        <div className="footer-logo">
+          <img src="/logos/StudySphere_Header.png" alt="StudySphere Logo" />
+          <p>Empowering collaborative learning through virtual study spaces.</p>
+        </div>
+
+        {/* Quick Links */}
+        <div className="footer-links">
+          <h3>Quick Links</h3>
+          <Link to="/">Home</Link>
+          <Link to="/createRoom">Create Room</Link>
+          <Link to="/joinRoom">Join Room</Link>
+          <Link to="/aboutUs">About Us</Link>
+        </div>
+
+        {/* Social Media */}
+        <div className="footer-social">
+          <h3>Connect With Us</h3>
+          <div className="social-icons">
+            <a href="#" aria-label="Twitter"><FaTwitter /></a>
+            <a href="#" aria-label="Facebook"><FaFacebookF /></a>
+            <a href="#" aria-label="Instagram"><FaInstagram /></a>
+            <a href="#" aria-label="LinkedIn"><FaLinkedinIn /></a>
+            <a href="#" aria-label="WhatsApp"><FaWhatsapp /></a>
+          </div>
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <p>© {new Date().getFullYear()} StudySphere. All Rights Reserved.</p>
+      </div>
+    </footer>
+  );
+};
 
 export default Footer;

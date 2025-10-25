@@ -1,104 +1,120 @@
-/* Container Styling */
+.createRoomWrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Ensure DarkVeil stays behind */
+.createRoomWrapper > *:not(.createRoomContainer) {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
 .createRoomContainer {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 90vh;
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
-  padding: 40px;
-  box-sizing: border-box;
+  background: rgba(25, 0, 40, 0.55);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(168, 112, 255, 0.3);
+  padding: 50px 60px;
+  color: white;
   animation: fadeIn 0.8s ease-in-out;
+  text-align: center;
+  width: 90%;
+  max-width: 450px;
 }
 
 .createRoomContainer h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 25px;
-  text-align: center;
-  background: linear-gradient(90deg, #398ffd, #3975ff);
+  background: linear-gradient(90deg, #a970ff, #8a3fff);
   -webkit-background-clip: text;
-  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+/* Form styling */
 .createRoomContainer form {
-  width: auto;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 40px 50px;
-  border-radius: 20px;
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  width: 100%;
+  background-color: transparent !important;
 }
-
-.createRoomContainer form:hover {
-  box-shadow: 0 0 40px #3975ff;
-}
-
 
 .createRoomContainer input[type="text"],
 .createRoomContainer input[type="number"] {
-  width: 300px;
+  width: 100%;
   padding: 12px 15px;
   font-size: 1rem;
   border-radius: 10px;
   border: 2px solid transparent;
-  outline: none;
-  transition: all 0.3s ease;
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
+  outline: none;
+  transition: 0.3s ease;
 }
 
 .createRoomContainer input[type="text"]:focus,
 .createRoomContainer input[type="number"]:focus {
-  border-color: #3975ff;
-  box-shadow: 0 0 10px #3975ff;
+  border-color: #a970ff;
+  box-shadow: 0 0 12px #a970ff;
 }
 
-
+/* Radio buttons */
 .radioGroup {
   display: flex;
-  gap: 20px;
   justify-content: center;
-  align-items: center;
+  gap: 30px;
+  background-color: transparent !important;
 }
 
 .radioGroup label {
   display: flex;
   align-items: center;
   gap: 8px;
+  color: #ccc;
   font-size: 1rem;
-  color: #ddd;
   cursor: pointer;
+    background-color: transparent !important;
 }
 
 .radioGroup input[type="radio"] {
-  accent-color: #3975ff;
+  accent-color: #a970ff;
   transform: scale(1.3);
   cursor: pointer;
+    background-color: transparent !important;
 }
 
+/* Button */
 .createRoomContainer button {
   padding: 12px 25px;
-  background: linear-gradient(90deg, #398ffd, #3975ff);
   border: none;
   border-radius: 10px;
+  background: linear-gradient(90deg, #a970ff, #8a3fff);
   font-size: 1.1rem;
-  font-weight: bold;
-  color: #111;
+  font-weight: 600;
+  color: white;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .createRoomContainer button:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 15px #00ffaa99;
+  box-shadow: 0 0 15px #a970ff;
 }
 
+/* Messages */
 .error {
   margin-top: 15px;
   color: #ff4b4b;
@@ -113,6 +129,7 @@
   animation: fadeIn 0.4s ease-in;
 }
 
+/* Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -121,5 +138,25 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .createRoomContainer {
+    width: 90%;
+    padding: 40px 30px;
+  }
+
+  .createRoomContainer h1 {
+    font-size: 1.8rem;
+  }
+
+  .createRoomContainer input {
+    font-size: 0.95rem;
+  }
+
+  .createRoomContainer button {
+    font-size: 1rem;
   }
 }
