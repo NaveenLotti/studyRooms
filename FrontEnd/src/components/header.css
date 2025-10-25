@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  background-color: transparent;
+}
+a{
+  color : #3773fe;
+  text-decoration : none;
+  font-size: 1.3rem;
+  font-weight : 500;
+}
+.logo{
+  cursor: pointer;
+  margin-left: 40px;
+}
+.logo h2 {
+  background: linear-gradient(90deg, #398ffd, #3975ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo h2:hover {
+  transform: scale(1.08);
+}
+
+.concepts {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.concepts a {
+  text-decoration: none;
+  position: relative;
+}
+
+.concepts p {
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.concepts a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg,#398ffd, #3975ff);
+  transition: width 0.3s ease;
+}
+
+.concepts a:hover::after {
+  width: 100%;
+}
+
+.concepts a:hover {
+  color: #38f9d7;
+  transform: translateY(-2px);
+}
+
+.login {
+  display: flex;
+  gap: 25px;
+  margin-right: 40px;
+}
+
+
+.login button {
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.login a {
+  text-decoration: none;
+}
+
+.login button:first-child {
+  background: transparent;
+  color: #398ffd;
+  border: 2px solid #398ffd;
+}
+
+.login button:first-child:hover {
+  background: linear-gradient(90deg, #07408a, #0e3ba2);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.login button:last-child {
+  background: linear-gradient(90deg, #398ffd, #3975ff);
+  color: #fff;
+}
+
+.login button:last-child:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #398ffd;
+}
+
+@keyframes fadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header, header {
+  animation: fadeDown 0.8s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .header, header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 25px;
+  }
+
+  .concepts {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .login {
+    justify-content: center;
+  }
+}
