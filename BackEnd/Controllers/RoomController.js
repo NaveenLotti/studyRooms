@@ -47,6 +47,22 @@ export const getRoomById = async (req, res) => {
   }
 }
 
+
+// DELETE Room
+export const deleteRoomById = async (req, res) => {
+  try {
+    const room = await Room.findById(req.params.id);
+    if (!room) return res.status(404).json({ message: "Room not found" });
+
+    await Room.findByIdAndDelete(req.params.id);
+    res.json({ message: "Room deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error while deleting room" });
+  }
+};
+
+
 export const searchRooms = async (req, res) => {
   const { topic } = req.query;
 
