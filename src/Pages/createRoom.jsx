@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DarkVeil from "../ReactBits/DarkVeil.jsx";
-import "./createRoom.css";
+import "./CreateRoom.css";
 
 function CreateRooms() {
   const [roomName, setRoomName] = useState("");
