@@ -9,7 +9,6 @@
   margin-top: 20px;
 }
 
-/* Ensure DarkVeil stays behind */
 .createRoomWrapper > *:not(.createRoomContainer) {
   position: absolute;
   inset: 0;
@@ -40,10 +39,11 @@
   margin-bottom: 25px;
   background: linear-gradient(90deg, #a970ff, #8a3fff);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Form styling */
+
 .createRoomContainer form {
   display: flex;
   flex-direction: column;
@@ -71,7 +71,6 @@
   box-shadow: 0 0 12px #a970ff;
 }
 
-/* Radio buttons */
 .radioGroup {
   display: flex;
   justify-content: center;
@@ -96,7 +95,7 @@
     background-color: transparent !important;
 }
 
-/* Button */
+
 .createRoomContainer button {
   padding: 12px 25px;
   border: none;
@@ -114,7 +113,6 @@
   box-shadow: 0 0 15px #a970ff;
 }
 
-/* Messages */
 .error {
   margin-top: 15px;
   color: #ff4b4b;
@@ -129,7 +127,6 @@
   animation: fadeIn 0.4s ease-in;
 }
 
-/* Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -141,7 +138,6 @@
   }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .createRoomContainer {
     width: 90%;

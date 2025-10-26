@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import DarkVeil from "../ReactBits/DarkVeil.jsx";
 import "./signUp.css";
 
@@ -7,38 +8,65 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-//   const [topics, setTopics] = useState([]);
   const [error, setError] = useState("");
   const [submit, setSubmit] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name || !email || !password || !confirmPassword) {
       setError("Please fill all fields");
-      setSubmit(false);
       return;
     }
     if (password !== confirmPassword) {
       setError("Passwords do not match");
-      setSubmit(false);
       return;
     }
     setError("");
     setSubmit(true);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: name,
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message || "Signup failed");
+        setLoading(false);
+        return;
+      }
+
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data));
+
+      setSuccess("Signed up successfully!");
+      setLoading(false);
+      navigate("/login");
+
+    } catch (err) {
+      setError("Server error. Please try again later.");
+      setLoading(false);
+    }
+
   };
 
-//   const handleTopics = (e) => {
-//     const value = e.target.value;
-//     const topicsArray = value.split(",").map((topic) => topic.trim());
-//     setTopics(topicsArray);
-//   };
 
   return (
     <div className="formWrapper">
       <DarkVeil />
       <div className="formContainer">
         <h1>Sign Up</h1>
-        <form onSubmit={handleSubmit} style={{backgroundColor: "transparent"}}>
+        <form onSubmit={handleSubmit} style={{ backgroundColor: "transparent" }}>
           <input
             type="text"
             value={name}
@@ -63,14 +91,10 @@ function SignUp() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="Confirm Password"
           />
-          {/* <input
-            type="text"
-            value={topics}
-            onChange={handleTopics}
-            placeholder="Topics you are interested in (comma-separated)"
-          /> */}
 
-          <button type="submit">Sign Up</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Creating account..." : "Sign Up"}
+          </button>
         </form>
 
         {error && <p className="error">{error}</p>}

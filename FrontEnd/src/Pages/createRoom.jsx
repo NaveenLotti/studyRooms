@@ -1,36 +1,73 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import DarkVeil from "../ReactBits/DarkVeil.jsx";
 import "./createRoom.css";
 
 function CreateRooms() {
   const [roomName, setRoomName] = useState("");
   const [maxUsers, setMaxUsers] = useState("");
-  const [Topics, setTopics] = useState([]);
+  const [topics, setTopics] = useState([]);
   const [isPrivate, setIsPrivate] = useState(false);
   const [error, setError] = useState("");
-  const [submit, setSubmit] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!roomName || !maxUsers) {
-      setError("Please fill out all fields");
+    if (!roomName || !maxUsers || topics.length === 0) {
+      setError("Please fill all fields");
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setError("You must be logged in to create a room");
       return;
     }
 
     setError("");
-    setSubmit(true);
+    setLoading(true);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/rooms/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ roomName, topics, maxUsers, isPrivate }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message || "Failed to create room");
+        setLoading(false);
+        return;
+      }
+
+      setSuccess("Room created successfully!");
+      setLoading(false);
+
+      navigate("/joinRoom");
+    } catch (err) {
+      console.error(err);
+      setError("Server error. Please try again later.");
+      setLoading(false);
+    }
   };
 
   const handleTopics = (e) => {
     const value = e.target.value;
-    const topicsArray = value.split(",").map((topic) => topic.trim());
-    setTopics(topicsArray);
+    setTopics(value.split(",").map((t) => t.trim()));
   };
 
   return (
     <div className="createRoomWrapper">
-      <DarkVeil /> {/* motion background */}
+      <DarkVeil />
       <div className="createRoomContainer">
         <h1>Create a Room</h1>
 
@@ -41,14 +78,12 @@ function CreateRooms() {
             onChange={(e) => setRoomName(e.target.value)}
             placeholder="Enter Room Name"
           />
-
           <input
             type="text"
-            value={Topics}
+            value={topics.join(", ")}
             onChange={handleTopics}
             placeholder="Enter Topics (comma-separated)"
           />
-
           <input
             type="number"
             value={maxUsers}
@@ -79,11 +114,13 @@ function CreateRooms() {
             </label>
           </div>
 
-          <button type="submit">Create Room</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Creating room..." : "Create Room"}
+          </button>
         </form>
 
         {error && <p className="error">{error}</p>}
-        {submit && <p className="success">Room created successfully!</p>}
+        {success && <p className="success">{success}</p>}
       </div>
     </div>
   );

@@ -18,7 +18,6 @@ function HeaderAuth() {
         <NavLink to="/" end>Home</NavLink>
         <NavLink to="/createRoom">Create Room</NavLink>
         <NavLink to="/joinRoom">Join Room</NavLink>
-        {/* <NavLink to="/posts">Posts</NavLink> */}
         <NavLink to="/aboutUs">About Us</NavLink>
       </div>
 

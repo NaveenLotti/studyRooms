@@ -1,7 +1,6 @@
 import Room from "../models/Room.js";
 import generateRoomCode from "../utils/generateRoomCode.js";
 
-// @desc Create a new room
 export const createRoom = async (req, res) => {
   const { roomName, topics, maxUsers, isPrivate } = req.body;
 
@@ -11,7 +10,7 @@ export const createRoom = async (req, res) => {
       topics,
       maxUsers,
       isPrivate,
-      createdBy: req.user._id,
+      createdBy: req.user._id, 
     };
 
     if (isPrivate) {
@@ -21,21 +20,20 @@ export const createRoom = async (req, res) => {
     const room = await Room.create(roomData);
     res.status(201).json(room);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error(error);
+    res.status(500).json({ message: "Server error while creating room" });
   }
 };
 
-// @desc Get all public rooms
 export const getPublicRooms = async (req, res) => {
   try {
     const rooms = await Room.find({ isPrivate: false });
     res.json(rooms);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: "Server error while fetching rooms" });
   }
 };
 
-// @desc Search rooms by topic
 export const searchRooms = async (req, res) => {
   const { topic } = req.query;
 
@@ -46,6 +44,6 @@ export const searchRooms = async (req, res) => {
     });
     res.json(rooms);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: "Server error while searching rooms" });
   }
 };

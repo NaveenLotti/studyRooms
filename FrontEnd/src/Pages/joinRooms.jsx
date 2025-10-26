@@ -1,55 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import axios from "axios";
 import "./joinRooms.css";
 
 function JoinRooms() {
   const [search, setSearch] = useState("");
+  const [rooms, setRooms] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Example rooms data
-  const rooms = [
-    {
-      id: 1,
-      name: "Math Wizards",
-      topics: ["Algebra", "Calculus", "Geometry"],
-      private: false,
-      image: "/Studyroom.jpg",
-    },
-    {
-      id: 2,
-      name: "Physics Enthusiasts",
-      topics: ["Mechanics", "Optics", "Thermodynamics"],
-      private: true,
-      image: "/Studyroom.jpg",
-    },
-    {
-      id: 3,
-      name: "Programming Hub",
-      topics: ["JavaScript", "React", "Node.js"],
-      private: false,
-      image: "/Studyroom.jpg",
-    },
-    {
-      id: 4,
-      name: "Chemistry Lab",
-      topics: ["Organic", "Inorganic", "Biochemistry"],
-      private: true,
-      image: "/Studyroom.jpg",
-    },
-    {
-      id: 5,
-      name: "Artistic Expressions",
-      topics: ["Painting", "Sculpture", "Dance"],
-      private: false,
-      image: "/Studyroom.jpg",
-    },
-    {
-      id: 6,
-      name: "Musician's Haven",
-      topics: ["Piano", "Guitar", "Violin"],
-      private: true,
-      image: "/Studyroom.jpg",
-    },
-  ];
+  useEffect(() => {
+    const fetchRooms = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/rooms");
+        setRooms(res.data);
+      } catch (error) {
+        console.error("Error fetching rooms:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRooms();
+  }, []);
 
   const filteredRooms = rooms.filter((room) =>
     room.name.toLowerCase().includes(search.toLowerCase())
@@ -68,21 +40,25 @@ function JoinRooms() {
             onChange={(e) => setSearch(e.target.value)}
           />
           <button type="submit">
-            <FaSearch color="#fff" style={{backgroundColor:"#a970ff"}} size={20} />
+            <FaSearch color="#fff" style={{ backgroundColor: "#a970ff" }} size={20} />
           </button>
         </form>
       </div>
 
       <div className="roomsContainer">
-        {filteredRooms.length > 0 ? (
+        {loading ? (
+          <p className="noRooms">Loading rooms...</p>
+        ) : filteredRooms.length > 0 ? (
           filteredRooms.map((room) => (
-            <div className="roomCard" key={room.id}>
-              <img src={room.image} alt={room.name} className="roomImage" />
+            <div className="roomCard" key={room._id}>
+              <img
+                src={room.image || "/Studyroom.jpg"}
+                alt={room.name}
+                className="roomImage"
+              />
               <div className="roomInfo">
                 <h2>{room.name}</h2>
-                <p className="topics">
-                  Topics: {room.topics.join(", ")}
-                </p>
+                <p className="topics">Topics: {room.topics.join(", ")}</p>
                 <p className={`privacy ${room.private ? "private" : "public"}`}>
                   {room.private ? "Private" : "Public"}
                 </p>

@@ -1,9 +1,5 @@
 import express from "express";
-import {
-  createRoom,
-  getPublicRooms,
-  searchRooms,
-} from "../Controllers/RoomController.js";
+import { createRoom, getPublicRooms, searchRooms } from "../Controllers/RoomController.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 
 const router = express.Router();
