@@ -25,14 +25,27 @@ export const createRoom = async (req, res) => {
   }
 };
 
-export const getPublicRooms = async (req, res) => {
+export const getAllRooms = async (req, res) => {
   try {
-    const rooms = await Room.find({ isPrivate: false });
+    const rooms = await Room.find({});
     res.json(rooms);
   } catch (error) {
     res.status(500).json({ message: "Server error while fetching rooms" });
   }
 };
+
+
+export const getRoomById = async (req, res) => {
+  try {
+    const room = await Room.findById(req.params.id);
+    if (!room) {
+      return res.status(404).json({ message: "Room not found" });
+    }
+    res.json(room);
+  } catch (error) {
+    res.status(500).json({ message: "Server error while fetching room" });
+  }
+}
 
 export const searchRooms = async (req, res) => {
   const { topic } = req.query;

@@ -19,7 +19,7 @@ const AppRouter = () => {
                     <Route path="/aboutUs" element={<AboutUs />} />
                     <Route path="/createRoom" element={<CreateRoom />} />
                     <Route path="/joinRoom" element={<JoinRoom />} />
-                    <Route path="/room" element={<StudyRoom />} />
+                    <Route path="/room/:roomId" element={<StudyRoom />} />
                 </Route>
             </Routes>
         </Router>

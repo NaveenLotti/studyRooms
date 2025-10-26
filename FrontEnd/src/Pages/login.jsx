@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DarkVeil from "../ReactBits/DarkVeil.jsx";
 import "./login.css";
+import { useAuth } from "../hooks/useAuth.js";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -10,6 +11,8 @@ function Login() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+
+   const { loginUser } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -40,10 +43,13 @@ function Login() {
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data));
 
+      loginUser(data);
+
+
       setLoading(false);
       navigate("/"); 
     } catch (err) {
-      setError("Server error. Please try again later.");
+      setError("Server error. Please try again later.",err);
       setLoading(false);
     }
   };
