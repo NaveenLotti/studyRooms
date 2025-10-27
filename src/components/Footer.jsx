@@ -6,13 +6,13 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
-        {/* Brand Section */}
+
         <div className="footer-logo">
           <img src="/logos/StudySphere_Header.png" alt="StudySphere Logo" />
           <p>Empowering collaborative learning through virtual study spaces.</p>
         </div>
 
-        {/* Quick Links */}
+
         <div className="footer-links">
           <h3>Quick Links</h3>
           <Link to="/">Home</Link>
@@ -21,7 +21,7 @@ const Footer = () => {
           <Link to="/aboutUs">About Us</Link>
         </div>
 
-        {/* Social Media */}
+
         <div className="footer-social">
           <h3>Connect With Us</h3>
           <div className="social-icons">

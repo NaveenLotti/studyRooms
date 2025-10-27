@@ -20,7 +20,7 @@ function StudyRoom() {
   useEffect(() => {
     const fetchRoom = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/rooms/${id}`);
+        const { data } = await axios.get(`https://studybackend-ctkm.onrender.com/api/rooms/${id}`);
         setRoom(data);
       } catch (error) {
         console.error(error);

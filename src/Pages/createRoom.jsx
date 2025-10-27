@@ -32,7 +32,7 @@ function CreateRooms() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/rooms/create", {
+      const response = await fetch("https://studybackend-ctkm.onrender.com/api/rooms/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

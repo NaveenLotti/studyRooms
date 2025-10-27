@@ -18,7 +18,7 @@ function JoinRooms() {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/rooms/");
+        const res = await axios.get("https://studybackend-ctkm.onrender.com/api/rooms/");
         setRooms(res.data);
       } catch (error) {
         console.error("Error fetching rooms:", error);

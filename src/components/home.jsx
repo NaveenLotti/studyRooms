@@ -5,13 +5,12 @@ import "./home.css";
 function Home() {
   return (
     <div className="home-container">
-      {/* Background */}
+
       <div className="darkveil-bg">
         <DarkVeil>
         </DarkVeil>
       </div>
 
-      {/* Foreground hero content */}
       <section className="hero">
         <div className="hero-content">
           <h1>Welcome to <span>StudySphere</span></h1>
